@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import "./App.css";
 // import List from './components/f8/List';
 // import Content from './components/f8/Content';
@@ -15,21 +15,14 @@ import Login from "./components/f8/Login";
 
 function App() {
   const [count, setCount] = useState(0);
-  const increase = () => {
+  const handleIncrease = useCallback(() => {
     setCount((prev) => prev + 1);
-  };
+  }, []);
   console.log("re-render app");
   return (
     <div className="w-full h-96">
-      <Login></Login>
       <h1>{count}</h1>
-      <button
-        type="button"
-        onClick={increase}
-        className="bg-orange-400 px-5 py-2 rounded-2xl"
-      >
-        Increase
-      </button>
+      <Login onIncrease={handleIncrease}></Login>
     </div>
   );
 }
