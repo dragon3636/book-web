@@ -4,7 +4,8 @@ import "./App.css";
 // import Content from './components/f8/Content';
 // import Login from "./components/f8/Login";
 // import Product from "./components/f8/Product";
-import Countdown2 from "./components/f8/Countdown2";
+// import Countdown2 from "./components/f8/Countdown2";
+import Todo from "./components/f8/Todo";
 // import CounDownTimeout from './components/f8/CounDownTimeout';
 // import PreviewAvatar from './components/f8/PreviewAvatar';
 // import Layer from "./components/f8/Layer";
@@ -17,7 +18,7 @@ import Countdown2 from "./components/f8/Countdown2";
 
 function App() {
   console.log("re-render app");
-  return <Countdown2></Countdown2>;
+  return <Todo></Todo>;
 }
 
 export default App;
