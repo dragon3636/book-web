@@ -2,7 +2,9 @@
 import { useContext } from "react";
 import "./App.css";
 import { useStore, Action } from "./components/f8/store";
-
+import Pharagraph from "./components/f8/Paragraph/Pharagraph";
+import Heading from "./components/f8/Heading/Heading";
+import Button from "./components/f8/Button";
 // import Paragraph from "./components/f8/Theme/Paragraph";
 // import { ThemeContext } from "./components/f8/Theme";
 // import List from './components/f8/List';
@@ -20,23 +22,16 @@ import { useStore, Action } from "./components/f8/store";
 // import List from './components/dropdown/List';
 // import { DropdownProvider } from './components/dropdown/dropdown-context';
 // const countryData = ['Vietname', 'Thailand', 'China', 'Japan'];
-
+import GlobalStyle from "./components/f8/GlobalStyle";
 function App() {
   const [state, dispath] = useStore();
   const { todoInput, todos } = state;
   console.log("todos ", todos);
   return (
-    <div>
-      <input
-        type="text"
-        name="job"
-        placeholder="Jobs...."
-        id=""
-        value={todoInput}
-        onChange={(e) => dispath(Action.setTodo(e.target.value))}
-        className="cursor-pointer"
-      />
-    </div>
+    <GlobalStyle>
+      <Button primary>Button primary</Button>
+      <Button>Button nomal</Button>
+    </GlobalStyle>
   );
 }
 
