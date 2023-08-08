@@ -4,7 +4,7 @@ import "./App.css";
 import { useStore, Action } from "./components/f8/store";
 import Pharagraph from "./components/f8/Paragraph/Pharagraph";
 import Heading from "./components/f8/Heading/Heading";
-import Button from "./components/f8/Button";
+import Button from "@components/f8/Button";
 // import Paragraph from "./components/f8/Theme/Paragraph";
 // import { ThemeContext } from "./components/f8/Theme";
 // import List from './components/f8/List';
