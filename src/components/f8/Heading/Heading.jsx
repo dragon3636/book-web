@@ -1,4 +1,4 @@
-import style from "./Heading.module.css";
+import style from './Heading.module.css';
 const Heading = () => {
   return (
     <div>

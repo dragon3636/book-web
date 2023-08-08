@@ -1,16 +1,16 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 const stateInit = 0;
-const UP_COUNT = "UP_COUNT";
-const D0WN_COUNT = "D0WN_COUNT";
+const UP_COUNT = 'UP_COUNT';
+const D0WN_COUNT = 'D0WN_COUNT';
 const reducerCount = (state, action) => {
-  console.log("Running reducer....!");
+  console.log('Running reducer....!');
   switch (action) {
     case UP_COUNT:
       return state + 1;
     case D0WN_COUNT:
       return state - 1;
     default:
-      throw new Error("Invalid action");
+      throw new Error('Invalid action');
   }
 };
 const Countdown2 = () => {
@@ -22,18 +22,10 @@ const Countdown2 = () => {
         className="flex w-full
        justify-between text-center gap-2"
       >
-        <button
-          type="button"
-          className="bg-red-200 p-3 rounded-3xl"
-          onClick={() => dispatch(UP_COUNT)}
-        >
+        <button type="button" className="bg-red-200 p-3 rounded-3xl" onClick={() => dispatch(UP_COUNT)}>
           Up
         </button>
-        <button
-          type="button"
-          className="bg-red-200 p-3 rounded-3xl"
-          onClick={() => dispatch(D0WN_COUNT)}
-        >
+        <button type="button" className="bg-red-200 p-3 rounded-3xl" onClick={() => dispatch(D0WN_COUNT)}>
           Down
         </button>
       </div>

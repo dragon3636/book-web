@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
-const documentType = ["posts", "comments", "photos"];
+const documentType = ['posts', 'comments', 'photos'];
 const Content = () => {
   const [body, setBody] = useState([]);
-  const [param, setParam] = useState("comments");
+  const [param, setParam] = useState('comments');
   const [scroll, setScroll] = useState(false);
   const buttonRef = useRef();
   useEffect(() => {
@@ -13,20 +13,20 @@ const Content = () => {
     fetch(`https://jsonplaceholder.typicode.com/${param}`)
       .then((res) => res.json())
       .then((response) => {
-        console.log("🚀 ~ file: Content.jsx:8 ~ fetch ~ response:", response);
+        console.log('🚀 ~ file: Content.jsx:8 ~ fetch ~ response:', response);
         setBody(response);
       })
       .catch((err) => {
-        console.log("🚀 ~ file: Content.jsx:7 ~ fetch ~ err:", err);
+        console.log('🚀 ~ file: Content.jsx:7 ~ fetch ~ err:', err);
       });
   }, [param]);
   useEffect(() => {
     const handleScroll = () => {
       setScroll(window.scrollY >= 200);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   return (
@@ -40,13 +40,13 @@ const Content = () => {
             setParam(item);
           }}
         >
-          {item}{" "}
+          {item}{' '}
         </div>
       ))}
       <ul>
         {body?.length > 0 &&
           body.map((item) => {
-            if (param === "comments") {
+            if (param === 'comments') {
               return <li key={item.id}> {item.name}</li>;
             }
             return <li key={item.id}> {item.title}</li>;
@@ -61,7 +61,7 @@ const Content = () => {
             });
           }}
         >
-          {" "}
+          {' '}
           Go to top
         </button>
       )}

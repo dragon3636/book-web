@@ -1,6 +1,6 @@
-import { SET_JOB, ADD_JOB, REMOVE_JOB } from "./constants";
+import { SET_JOB, ADD_JOB, REMOVE_JOB } from './constants';
 export const initState = {
-  job: "",
+  job: '',
   jobs: [],
 };
 
@@ -14,7 +14,7 @@ const reducerState = (state, action) => {
     case ADD_JOB:
       return {
         ...state,
-        job: "",
+        job: '',
         jobs: [...state.jobs, action.payload],
       };
     case REMOVE_JOB: {
@@ -26,7 +26,7 @@ const reducerState = (state, action) => {
       };
     }
     default:
-      throw new Error("Invalidate action payload");
+      throw new Error('Invalidate action payload');
   }
 };
 export default reducerState;

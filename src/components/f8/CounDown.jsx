@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const CounDown = () => {
   const [count, setCount] = useState(180);
   const prevCount = useRef();
   useEffect(() => {
     prevCount.current = count;
-    console.log(
-      "🚀 ~ file: CounDown.jsx:8 ~ useEffect ~ prevCount.current:",
-      prevCount.current
-    );
+    console.log('🚀 ~ file: CounDown.jsx:8 ~ useEffect ~ prevCount.current:', prevCount.current);
   }, [count]);
   const timeId = useRef();
 
@@ -20,11 +17,7 @@ const CounDown = () => {
   const handleDownCount = () => {
     clearInterval(timeId.current);
   };
-  console.log(
-    "🚀 ~ file: CounDown.jsx:24 count, prevCount:",
-    count,
-    prevCount.current
-  );
+  console.log('🚀 ~ file: CounDown.jsx:24 count, prevCount:', count, prevCount.current);
   return (
     <div>
       <h3>{count}</h3>

@@ -1,6 +1,5 @@
-
 const Item = ({ children }) => {
-    return (<span  className="block p-5 bg-white cursor-pointer hover:bg-slate-50">{children}</span>);
+  return <span className="block p-5 bg-white cursor-pointer hover:bg-slate-50">{children}</span>;
 };
 
 export default Item;

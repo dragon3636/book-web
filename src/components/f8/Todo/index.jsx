@@ -1,7 +1,7 @@
-import { useReducer, useRef } from "react";
-import reducerState, { initState } from "./reduce";
-import { addJob, removeJob, setJob } from "./action";
-import logger from "./logger";
+import { useReducer, useRef } from 'react';
+import reducerState, { initState } from './reduce';
+import { addJob, removeJob, setJob } from './action';
+import logger from './logger';
 const Todo = () => {
   const [state, dispatch] = useReducer(logger(reducerState), initState);
   const inputRef = useRef(null);
@@ -12,7 +12,7 @@ const Todo = () => {
     inputRef.current.focus();
   };
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleAddJob();
     }
   };

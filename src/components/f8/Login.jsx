@@ -1,14 +1,10 @@
-import { memo } from "react";
+import { memo } from 'react';
 
 const Login = ({ onIncrease }) => {
-  console.log("Re-render login");
+  console.log('Re-render login');
   return (
     <div className="md:w-2/3">
-      <button
-        type="button"
-        onClick={onIncrease}
-        className="bg-orange-400 px-5 py-2 rounded-2xl"
-      >
+      <button type="button" onClick={onIncrease} className="bg-orange-400 px-5 py-2 rounded-2xl">
         Increase
       </button>
       <input

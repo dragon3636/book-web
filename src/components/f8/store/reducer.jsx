@@ -1,8 +1,8 @@
-import { SET_TODO_INPUT } from "./constants";
+import { SET_TODO_INPUT } from './constants';
 
 const initState = {
   todos: [],
-  todoInput: "",
+  todoInput: '',
 };
 function reducer(state, action) {
   switch (action.type) {

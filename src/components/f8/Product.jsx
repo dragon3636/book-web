@@ -1,15 +1,15 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
 
 const Product = () => {
-  const [price, setPrice] = useState("");
-  const [name, setName] = useState("");
+  const [price, setPrice] = useState('');
+  const [name, setName] = useState('');
   const [product, setProduct] = useState([]);
   const handleSubmit = () => {
     setProduct([...product, { name, price: +price }]);
   };
   const total = useMemo(() => {
     product.reduce((preV, currentV) => {
-      console.log("Re caculate");
+      console.log('Re caculate');
       return preV + currentV.price;
     }, 0);
   }, [product]);
@@ -46,10 +46,7 @@ const Product = () => {
       <br />
       <label className="inline">Total: {total}</label>
       <ul>
-        {product.length > 0 &&
-          product.map((item, index) => (
-            <li key={index}>{`${item.name} - ${item.price}`}</li>
-          ))}
+        {product.length > 0 && product.map((item, index) => <li key={index}>{`${item.name} - ${item.price}`}</li>)}
       </ul>
     </div>
   );
