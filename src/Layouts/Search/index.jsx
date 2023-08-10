@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const Search = ({ children }) => {
   return (
-    <div>
+    <div className="wrapper">
       <Header />
       <div className="content">{children}</div>
     </div>

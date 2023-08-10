@@ -1,0 +1,22 @@
+.container-navigator {
+  max-width: 240px;
+}
+.scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  perspective: 1px;
+  width: 240px;
+  // background: rgba(255, 255, 255, 1);
+  padding-right: 8px;
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  z-index: 99;
+}
+
+.wrapper {
+  display: flex;
+  padding: 20px 0 26px;
+  padding-left: 8px;
+}
