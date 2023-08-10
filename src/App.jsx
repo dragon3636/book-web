@@ -1,5 +1,5 @@
 // import { useCallback, useState } from "react";
-import { useContext } from 'react';
+import { Fragment } from 'react';
 import { useStore, Action } from './components/f8/store';
 import Pharagraph from './components/f8/Paragraph/Pharagraph';
 import Heading from './components/f8/Heading/Heading';
@@ -22,11 +22,39 @@ import Button from '@components/f8/Button';
 // import { DropdownProvider } from './components/dropdown/dropdown-context';
 // const countryData = ['Vietname', 'Thailand', 'China', 'Japan'];
 import GlobalStyle from './components/GlobalStyle';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRouter } from '@/routes';
+import { DeffaulLayout } from './Layouts';
 function App() {
   return (
     <GlobalStyle>
-      <Button primary>Button primary</Button>
-      <Button>Button nomal</Button>
+      <Router>
+        <div className="App">
+          <Routes>
+            {publicRouter.length > 0 &&
+              publicRouter.map((item, index) => {
+                let Layout = DeffaulLayout;
+                if (item.layout) {
+                  Layout = item.layout;
+                } else if (item.layout === null) {
+                  Layout = Fragment;
+                }
+                const Page = item.component;
+                return (
+                  <Route
+                    key={index}
+                    path={item.path}
+                    element={
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    }
+                  />
+                );
+              })}
+          </Routes>
+        </div>
+      </Router>
     </GlobalStyle>
   );
 }
