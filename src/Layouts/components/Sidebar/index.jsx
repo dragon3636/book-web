@@ -15,6 +15,20 @@ const Sidebar = () => {
                   </a>
                 </div>
               </li>
+              <li>
+                <div>
+                  <a href="#">
+                    <span>Following</span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <a href="#">
+                    <span>Explore</span>
+                  </a>
+                </div>
+              </li>
             </ul>
           </nav>
         </div>
