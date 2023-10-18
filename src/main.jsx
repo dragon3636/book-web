@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import './index.scss';
+import './index.css';
+// import './index.scss';
 // import { ThemeProvider } from "./components/f8/Theme/ThemeContext";
 // import { StoreProvider } from "./components/f8/store";
 // const createCommnet = (postId) => {

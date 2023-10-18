@@ -1,9 +1,9 @@
 // import { useCallback, useState } from "react";
 import { Fragment } from 'react';
-import { useStore, Action } from './components/f8/store';
-import Pharagraph from './components/f8/Paragraph/Pharagraph';
-import Heading from './components/f8/Heading/Heading';
-import Button from '@components/f8/Button';
+// import { useStore, Action } from './components/f8/store';
+// import Pharagraph from './components/f8/Paragraph/Pharagraph';
+// import Heading from './components/f8/Heading/Heading';
+// import Button from '@components/f8/Button';
 // import Paragraph from "./components/f8/Theme/Paragraph";
 // import { ThemeContext } from "./components/f8/Theme";
 // import List from './components/f8/List';
@@ -21,42 +21,52 @@ import Button from '@components/f8/Button';
 // import List from './components/dropdown/List';
 // import { DropdownProvider } from './components/dropdown/dropdown-context';
 // const countryData = ['Vietname', 'Thailand', 'China', 'Japan'];
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import GlobalStyle from './components/GlobalStyle';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRouter } from '@/routes';
 import { DeffaulLayout } from './Layouts';
+import Root, { loader as rootLoader, action as rootAction } from './routes/root';
+import ErrorPage from './routes/error-page';
+import Contact, { loader as contactLoader, action as contactAction } from './routes/contact';
+import EditContact, { action as editAction } from './routes/edit';
+import { action as destroyAction } from './routes/destroy';
+import Index from './routes';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    loader: rootLoader,
+    action: rootAction,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Index /> },
+          {
+            path: 'contacts/:contactId',
+            element: <Contact />,
+            loader: contactLoader,
+            action: contactAction,
+          },
+          {
+            path: 'contacts/:contactId/edit',
+            element: <EditContact />,
+            loader: contactLoader,
+            action: editAction,
+          },
+          {
+            path: 'contacts/:contactId/destroy',
+            action: destroyAction,
+          },
+        ],
+      },
+    ],
+  },
+]);
 function App() {
-  return (
-    <GlobalStyle>
-      <Router>
-        <div className="App">
-          <Routes>
-            {publicRouter.length > 0 &&
-              publicRouter.map((item, index) => {
-                let Layout = DeffaulLayout;
-                if (item.layout) {
-                  Layout = item.layout;
-                } else if (item.layout === null) {
-                  Layout = Fragment;
-                }
-                const Page = item.component;
-                return (
-                  <Route
-                    key={index}
-                    path={item.path}
-                    element={
-                      <Layout>
-                        <Page />
-                      </Layout>
-                    }
-                  />
-                );
-              })}
-          </Routes>
-        </div>
-      </Router>
-    </GlobalStyle>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
