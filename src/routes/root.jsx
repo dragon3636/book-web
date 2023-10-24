@@ -26,6 +26,7 @@ export default function Root() {
   // useEffect(() => {
   //   setQuery(q);
   // }, [q]);
+
   return (
     <>
       <div id="sidebar">

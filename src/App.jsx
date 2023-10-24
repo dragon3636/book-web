@@ -32,6 +32,8 @@ import Contact, { loader as contactLoader, action as contactAction } from './rou
 import EditContact, { action as editAction } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
 import Index from './routes';
+import AuthLayout from './Layouts/AuthLayout';
+import Login, { action as loginAction } from './pages/Login';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -61,6 +63,16 @@ const router = createBrowserRouter([
             action: destroyAction,
           },
         ],
+      },
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: '/login',
+        element: <Login />,
+        action: loginAction,
       },
     ],
   },
