@@ -1,9 +1,13 @@
-import { Outlet, Link, useLoaderData, Form, NavLink, redirect } from 'react-router-dom';
+import { Outlet, useLoaderData, Form, NavLink, redirect, useNavigation, useSubmit } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createContact, getContacts } from '../contacts';
 
-export async function loader() {
-  const contacts = await getContacts();
-  return { contacts };
+export async function loader({ request }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get('q') || '';
+  const contacts = await getContacts(q);
+
+  return { contacts, q };
 }
 
 export async function action() {
@@ -12,15 +16,40 @@ export async function action() {
 }
 
 export default function Root() {
-  const { contacts } = useLoaderData();
+  const { contacts, q } = useLoaderData();
+  const [query, setQuery] = useState(q);
+  const navigation = useNavigation();
+  const submit = useSubmit();
+  const searchRef = useRef();
+
+  const searching = navigation.location && new URLSearchParams(navigation.location.search).has('q');
+  // useEffect(() => {
+  //   setQuery(q);
+  // }, [q]);
+
   return (
     <>
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
           <Form id="search-form" role="search">
-            <input id="q" aria-label="Search contacts" placeholder="Search" type="search" name="q" />
-            <div id="search-spinner" aria-hidden hidden={true} />
+            <input
+              id="q"
+              className={searching ? 'loading' : ''}
+              aria-label="Search contacts"
+              placeholder="Search"
+              type="search"
+              name="q"
+              defaultValue={q}
+              ref={searchRef}
+              onChange={(event) => {
+                const isFirstSearch = q == null;
+                submit(event.currentTarget.form, {
+                  replace: !isFirstSearch,
+                });
+              }}
+            />
+            <div id="search-spinner" aria-hidden hidden={!searching} />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
           <Form method="post">
@@ -55,7 +84,7 @@ export default function Root() {
           )}
         </nav>
       </div>
-      <div id="detail">
+      <div id="detail" className={navigation.state === 'loading' ? 'loading' : ''}>
         <Outlet />
       </div>
     </>
